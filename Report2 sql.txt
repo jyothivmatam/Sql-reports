@@ -1,0 +1,122 @@
+select employeeID,count(employeeScore) from samplesource group by cube(employeeId) order by(employeeId)
+
+select employeeId,count(employeeScore) from samplesource group by rollup(employeeId)
+
+
+
+create table SupplierTable
+(
+SupplierId int  not null,
+DaysOfManufacture int ,
+cost int,
+customerId int,
+purchaseId varchar(4000)
+);
+
+Insert into SupplierTable values('1','12','1230','11','P1');
+Insert into SupplierTable values('2','13','1431','12','P1');
+Insert into SupplierTable values('3','14','7896','13','P1');
+Insert into SupplierTable values('4','15','999','14','P1');
+Insert into SupplierTable values('5','16','1999','15','P1');bjecta
+Insert into SupplierTable values('6','17','1499','16','P1');
+
+select * from SupplierTable
+
+select customerId,Avg(cost) as AverageCostOf Customer from SupplierTable group by CustomerId
+
+create table Subjects(SubId int,StudentId int,Subname varchar(15))
+
+insert into Subjects values('1','12','physics')
+insert into Subjects values('2','13','chemistry')
+insert into Subjects values('3','15','maths')
+insert into Subjects values ('4','16','som')
+insert into Subjects values ('5','17','biology')
+
+select * from Subjects
+
+create table Studentinfo(StudentId int,StudentName varchar(20),Studentaddress varchar(20),phonenumber int )
+
+insert into Studentinfo values('11','aaa','nice road','345')
+insert into Studentinfo values('11','aaa','nice road','345')
+insert into Studentinfo values('11','aaa','nice road','345')
+insert into Studentinfo values('11','aaa','nice road','345')
+insert into Studentinfo values('11','aaa','nice road','345')
+
+select * from Studentinfo
+
+Select Subjects.SubId,StudentInfo.StudentName
+From Subjects
+Inner Join
+Studentinfo on
+Subjects.StudentId=StudentInfo.StudentId
+
+update Subjects
+set StudentId=11
+where SubId=1;
+
+Select Subjects.SubId,StudentInfo.StudentName
+From Studentinfo
+Inner Join
+Subjects on
+Studentinfo.StudentId=Subjects.StudentId
+order by Studentinfo.StudentName
+
+Select Subjects.SubId,StudentInfo.StudentName
+From Studentinfo
+Left Join
+Subjects on
+Studentinfo.StudentId=Subjects.StudentId
+order by Studentinfo.StudentName
+
+Select Subjects.SubId,StudentInfo.StudentName
+From Studentinfo
+right Join
+Subjects on
+Studentinfo.StudentId=Subjects.StudentId
+order by Studentinfo.StudentName
+
+
+Select Subjects.SubId,StudentInfo.StudentName
+From Studentinfo
+Full outer join
+Subjects on
+Studentinfo.StudentId=Subjects.StudentId
+order by Studentinfo.StudentName
+
+create procedure Studentaddress @Sadd varchar(20)
+as
+select * from Studentinfo
+where Studentaddress =@Sadd
+go
+select * from Studentinfo
+exec  Studentaddress @Sadd='nice road'
+
+create login sample1 with password = 'Moback'
+
+create user Moback for login sample1
+
+grant select on Studentinfo to Moback
+
+revoke select on Studentinfo to Moback    
+
+Joins:
+Left join
+Outer join 
+right join
+inner join
+
+Store procedure:A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again.
+
+So if you have an SQL query that you write over and over again, save it as a stored procedure, and then just call it to execute it.
+
+You can also pass parameters to a stored procedure, so that the stored procedure can act based on the parameter value(s) that is passed.
+ 
+Syntax :
+CREATE PROCEDURE procedure_name
+AS
+sql_statement
+GO;
+
+for execution:
+
+EXEC procedure_name;
