@@ -1,0 +1,181 @@
+creating database of company details.
+
+
+create database CompanyDetails;
+use CompanyDetails;
+
+create table employee
+(
+empId int,
+empName varchar(30),
+empAge int,
+DepId int,
+SalaryId int);
+
+insert into employee values('1','Anu','22','11','101')
+insert into employee values('2','banu','23','12','102')
+insert into employee values('3','santosh','24','13','103')
+insert into employee values('4','john','25','14','104')
+insert into employee values('5','jeevan','26','15','105')
+insert into employee values('6','harry','27','16','106')
+insert into employee values('7','stefan','30','18','110')
+
+select * from employee
+
+create table Department
+(
+DepId int,
+DepName varchar(30)
+);
+
+insert into Department values('11','Dev')
+insert into Department values('12','Testing')
+insert into Department values('13','hr')
+insert into Department values('14','support')
+insert into Department values('15','risk analyst')
+insert into Department values('16','devops')
+insert into Department values('18','sql')
+
+select * from Department
+
+create table Salary
+(
+SalaryId int,
+SalaryAmount int);
+
+insert into Salary values('101','9000')
+insert into Salary values('102','11000')
+insert into Salary values('103','10000')
+insert into Salary values('104','50000')
+insert into Salary values('105','35000')
+insert into Salary values('106','20000')
+insert into Salary values('110','70000')
+
+select * from Salary
+
+select empName,DepName,SalaryAmount
+from employee
+join Department
+on employee.DepId=Department.DepId
+join salary
+on salary.SalaryId=employee.SalaryId
+where SalaryAmount>10000
+
+
+select * from employees
+
+insert into employees values('1','John Smith','10000','3');
+insert into employees values('2','John Andreson','12000','3');
+insert into employees values('3','Ton Lanon','15000','4');
+insert into employees values('4','Anne connan','20000','6');
+insert into employees values('5','Jeremy york','9000','1');
+
+Select employee.Id,employee.FullName,employee.ManagerId,
+manager.FullName as Managername
+from employees employee
+join employees Manager
+on employee.ManagerId=manager.Id
+
+Select employee.Id,employee.FullName,employee.ManagerId,
+manager.FullName as Managername
+from employees employee
+left join employees Manager
+on employee.ManagerId=manager.Id
+
+
+Select employee.Id,employee.FullName,employee.ManagerId,
+manager.FullName as Managername
+from employees employee
+Right join employees Manager
+on employee.ManagerId=manager.Id
+
+
+Select employee.Id,employee.FullName,employee.ManagerId,
+manager.FullName as Managername
+from employees employee
+full join employees Manager
+on employee.ManagerId=manager.Id
+
+
+Select employee.Id,employee.FullName,employee.ManagerId,
+manager.FullName as Managername
+from employees employee
+cross join employees Manager
+
+
+create table Customer
+(
+CId int,
+CName varchar(50),
+ContactName varchar(50),
+Address varchar(50),
+city varchar(50),
+Country varchar(50),
+PostalCode int);
+
+insert into Customer values('1','karina','shradhha','nice road','bangalore','india','123');
+insert into Customer values('2','kanmani','patra','bell road','manglore','india','577');
+insert into Customer values('3','sindhu','kumari','brigade road','belgum','germany','432');
+insert into Customer values('4','samanta','chai','market road','shimoga','japan','184');
+insert into Customer values('5','nani','keerthi','bda road','hyderabad','US','965');
+insert into Customer values('6','anu','abi','bellanodoor road','gurugaon','india','589');
+insert into Customer values('7','selva','priya','mg road','tumkur','india','543');
+
+select * from Customer
+
+create table Supplier
+(
+SId int,
+SName varchar(50),
+SContactName varchar(50),
+Address varchar(50),
+city varchar(50),
+Country varchar(50),
+PostalCode int);
+
+
+insert into Supplier values('1','kamal','hassan','nice road','bangalore','india','123');
+insert into Supplier  values('2','mani','payal','bell road','manglore','india','577');
+insert into Supplier  values('3','sindhu','kumari','brigade ','belgum','germany','432');
+insert into Supplier  values('4','sam','chaiy','market road','shimoga','uk','184');
+insert into Supplier values('5','nani','keerthi','bda road','hyderabad','US','965');
+insert into Supplier  values('6','anil','abishek','bellanodoor road','gurugaon','india','589');
+insert into Supplier  values('7','san','neel','mg road','tumkur','india','243');
+
+select * from Supplier
+
+
+select city from Customer
+union 
+select city from Supplier
+order by city;
+
+select city from Customer
+union 
+select city from Supplier
+order by city desc;
+
+select city from Customer
+union all 
+select city from Supplier
+order by city desc;
+
+
+select city ,Country from Customer
+where Country='india'
+union all 
+select city,Country from Supplier
+where Country='india'
+order by city desc;
+
+SELECT COUNT(CId), Country
+FROM Customer
+GROUP BY Country;
+
+SELECT COUNT(CId), Country
+FROM Customer
+GROUP BY Country
+ORDER BY COUNT(CId) DESC;
+
+
+
