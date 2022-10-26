@@ -1,0 +1,98 @@
+here we have to create companydetails
+we have three tables employee,Department,Salary
+
+employee have these columns
+(empID int,
+empName varchar(30),
+empAge int,
+DepartmentId int,
+salaryID int);
+
+Department have these columns
+(DepartmentID int,
+DepartName varchar(30));
+
+salary have these columns
+(SalaryId int,
+salaryamount int);
+
+select employeename,departmentname,salaryamount
+join employee
+on employee.DepartmentId=Department.DepartmentId
+join salary
+on salary.salaryid=employee.salaryid
+where salaryamount>10000
+
+
+Solution:
+
+create database CompanyDetails;
+use CompanyDetails;
+
+create table employee
+(
+empId int,
+empName varchar(30),
+empAge int,
+DepId int,
+SalaryId int);
+
+insert into employee values('1','Anu','22','11','101')
+insert into employee values('2','banu','23','12','102')
+insert into employee values('3','santosh','24','13','103')
+insert into employee values('4','john','25','14','104')
+insert into employee values('5','jeevan','26','15','105')
+insert into employee values('6','harry','27','16','106')
+insert into employee values('7','stefan','30','18','110')
+
+select * from employee
+
+create table Department
+(
+DepId int,
+DepName varchar(30)
+);
+
+insert into Department values('11','Dev')
+insert into Department values('12','Testing')
+insert into Department values('13','hr')
+insert into Department values('14','support')
+insert into Department values('15','risk analyst')
+insert into Department values('16','devops')
+insert into Department values('18','sql')
+
+select * from Department
+
+create table Salary
+(
+SalaryId int,
+SalaryAmount int);
+
+insert into Salary values('101','9000')
+insert into Salary values('102','11000')
+insert into Salary values('103','10000')
+insert into Salary values('104','50000')
+insert into Salary values('105','35000')
+insert into Salary values('106','20000')
+insert into Salary values('110','70000')
+
+select * from Salary
+
+select empName,DepName,SalaryAmount
+from employee
+join Department
+on employee.DepId=Department.DepId
+join salary
+on salary.SalaryId=employee.SalaryId
+where SalaryAmount>10000
+
+
+
+
+
+
+
+
+
+
+
