@@ -1,0 +1,194 @@
+select * from AdventureWorksDWBuildVersion
+
+select * from DatabaseLog
+select * from DimAccount
+select * from DimCurrency
+select * from DimCustomer
+select * from DimDate
+select * from DimDepartmentGroup
+select * from DimEmployee
+select * from DimCurrency where CurrencyName='Afghani'
+select * from DimCurrency where CurrencyName like '[ASDBGHYR]%'
+select * from DimCurrency where CurrencyKey  between 3 and 9
+select * from DimCurrency where CurrencyName like '[^ASDBGHYR]%'
+select * from DimCurrency where CurrencyName in ('dollor','euro','forint','french franc')
+select top 20 * from DimCurrency
+select top 50 percent * from DimCurrency
+
+create procedure DCurrency
+as
+begin 
+select CurrencyKey,CurrencyAlternateKey,CurrencyName
+from DimCurrency
+end
+
+exec  DCurrency;
+
+create procedure DCurrency1 @CurrencyName nvarchar(50)
+as
+begin 
+select CurrencyKey,CurrencyAlternateKey,CurrencyName
+from DimCurrency
+where CurrencyName=@CurrencyName
+end
+
+
+exec  DCurrency1 @CurrencyName='Afghani'; 
+
+
+create table car
+(
+CarId int,
+CarName nvarchar(50),
+CarColour varchar(50));
+
+insert into car values('23','Audi','Black')
+insert into car values('83','Benz','Blue')
+insert into car values('67','Range Rover','Red')
+insert into car values('76','swift','Chocolate')
+
+select * from car
+
+create table carDescription
+(
+carId int,
+CarDesc varchar(100));
+
+insert into carDescription values('23','Luxury vehicle from the German automotive')
+insert into carDescription values('83','Luxury vehicle from the US automotive')
+insert into carDescription values('67','Luxury vehicle from the Gapan automotive')
+insert into carDescription values('76','Luxury vehicle from the India automotive')
+
+select * from carDescription
+
+create procedure carPro 
+as
+select * from car
+go
+
+exec carPro
+
+create procedure carPro1 
+as
+select c.CarId,c.CarName,cd.CarDesc from car c
+inner join carDescription cd
+on c.CarId=cd.carId
+go
+
+exec carPro1
+
+create procedure carPro2
+as
+select c.CarId,c.CarName,cd.CarDesc from car c
+left join carDescription cd
+on c.CarId=cd.carId
+go
+
+exec carPro2
+
+create procedure carPro3 
+@CarName varchar(50)
+as
+select c.CarId,c.CarName,cd.CarDesc from car c
+left join carDescription cd
+on c.CarId=cd.carId
+where Carname=@CarName
+go
+
+exec carPro3 'Audi' 
+
+create procedure carPro5
+@CarName varchar(50),@CarColour varchar(50)
+as
+select c.CarId,c.CarName,cd.CarDesc,c.CarColour from car c
+left join carDescription cd
+on c.CarId=cd.carId
+where Carname=@CarName and CarColour=@CarColour
+go
+
+exec carPro5 @CarName='Range Rover',@CarColour='Red';
+
+create database StudentDetails
+
+CREATE TABLE student_details(
+  stu_id VARCHAR(8) NOT NULL PRIMARY KEY,
+  stu_name VARCHAR(20),
+  stu_branch VARCHAR(20) FOREIGN KEY REFERENCES student_branch_details(stu_branch),
+  stu_pin_code VARCHAR(6) FOREIGN KEY REFERENCES student_address(stu_pin_code)
+  );
+
+  INSERT INTO student_details VALUES
+('1940001','PRATHAM','E.C.E','555555'),
+('1940002','ASHOK','C.S.E','666666'),
+('1940003','PAVAN KUMAR','C.S.E','777777'),
+('1940004','SANTHOSH','E.C.E','888888'),
+('1940005','THAMAN','E.C.E','999999'),
+('1940006','HARSH','E.E.E','888888')
+
+select * from student_details
+
+CREATE TABLE student_branch_details(
+  stu_branch VARCHAR(20) PRIMARY KEY,
+  subjects int,
+  credits int
+);
+
+INSERT INTO student_branch_details VALUES
+  ('E.C.E',46,170),
+  ('E.E.E',47,178),
+  ('C.S.E',44,160)
+
+  select * from student_branch_details
+
+
+CREATE TABLE student_address(
+  stu_pin_code VARCHAR(6) PRIMARY KEY,
+  stu_state VARCHAR(20),
+  student_city VARCHAR(20)
+);
+
+INSERT INTO student_address VALUES
+  ('555555', 'xyz','abc'),
+  ('666666', 'yyy','aaa'),
+  ('777777','zzz','bbb'),
+  ('888888','www','ccc'),
+  ('999999','vvv','ddd')
+
+  select * from student_address
+
+
+  select stu_name,credits,stu_state
+  from student_details
+  inner join student_branch_details
+  on student_details.stu_branch = student_branch_details.stu_branch
+  inner join student_address 
+  on student_details.stu_pin_code=student_address. stu_pin_code
+
+  create view student_view
+  as
+  select stu_name,credits,stu_state
+  from student_details
+  inner join student_branch_details
+  on student_details.stu_branch = student_branch_details.stu_branch
+  inner join student_address 
+  on student_details.stu_pin_code=student_address. stu_pin_code
+
+  select * from student_view
+
+  create view student_view1
+  as
+  select stu_name,credits,stu_state
+  from student_details
+  inner join student_branch_details
+  on student_details.stu_branch = student_branch_details.stu_branch
+  inner join student_address 
+  on student_details.stu_pin_code=student_address. stu_pin_code
+  where stu_name='PAVAN KUMAR'
+
+  select * from student_view1
+
+
+
+
+
+
