@@ -1,0 +1,46 @@
+.Net is an opensource developer platform for building different types of apps.
+
+Language+Libraries
+
+it uses the language csharp,fsharp,visual basic
+
+platforms are=.net core:Runs anywhere macos,linux,windows
+              .net framework:websites,services and apps on windows
+              xamarian/mono:a .net for mobile.
+
+.NET provides a standard set of base class libraries and APIs that are common to all .NET applications.
+
+.NET comes in four flavors: .NET Framework, .NET Core, Xamarin, and Universal Windows Platform (UWP).
+
+These implementations combined are called the .NET development platform. Each of them contains frameworks and libraries 
+to build various applications.
+
+Pros of .NET development
+Object-oriented software development model
+Reliable and simple caching system
+Visual Studio IDE
+Cross-platform design of .NET Core
+Flexible deployment and easy maintenance
+
+
+MVC:Model view controller
+MVC is a design pattern used to decouple user-interface (view), data (model), and application logic (controller). 
+This pattern helps to achieve separation of concerns.
+
+Using the MVC pattern for websites, requests are routed to a Controller that is responsible for working with 
+the Model to perform actions and/or retrieve data. 
+The Controller chooses the View to display and provides it with the Model. The View renders the final page, based on the data in the Model.
+
+Models and Data:
+Create clean model classes and easily bind them to your database. Declaratively define validation rules, using C# attributes, 
+which are applied on the client and server.
+
+ASP.NET supports many database engines including SQLite, SQL Server, MySQL, PostgreSQL, DB2 and more, 
+as well as non-relational stores such as MongoDB, Redis, and Azure Cosmos DB.
+
+Simply route requests to controller actions, implemented as normal C# methods.
+ Data from the request path, query string, and request body are automatically bound to method parameters.
+
+The Razor syntax provides a simple, clean, and lightweight way to render HTML content based on your view. Razor lets you render a page using C#,
+ producing fully HTML5 compliant web pages.
+
